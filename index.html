@@ -15,46 +15,44 @@
 </head>
 
 <body>
-  <h1>Recipe Library</h1>
+  <h1>Recipe Library
+  </h1>
 
   <div class="text-container">
     <div class="filter">
-      <h4>Filter on kitchen
-      </h4>
-      <ul>
-        <li><button class="k-btn">All</button></li>
-        <li><button class="k-btn">Italy</button></li>
-        <li><button class="k-btn">USA</button></li>
-        <li><button class="k-btn">China</button></li>
-      </ul>
+      <h2>Filter on kitchen
+      </h2>
+      <button class="btn-filter active">All</button>
+      <button class="btn-filter">Italy</button>
+      <button class="btn-filter">USA</button>
+      <button class="btn-filter">China</button>
     </div>
 
-    <div class="filter">
-      <h4>Sort on time</h4>
-      <ul>
-        <li><button class="t-btn">Descending</button></li>
-        <li><button class="t-btn">Ascending</button></li>
-      </ul>
+    <div class="sort">
+      <h2>Sort on time</h2>
+      <button class="btn-sort active">Descending</button>
+      <button class="btn-sort">Ascending</button>
     </div>
   </div>
 
   <section class="card-container">
     <article class="card">
-      <h4>Temporary placeholder for filter/sorting options</h4>
+      <h2>Temporary placeholder for filter/sorting options</h2>
+      <p id="result-filter"></p>
+      <p id="result-sort"></p>
     </article>
-
     <article class="card">
       <img
         class="example"
         src="example.jpg"
         alt="example"
       >
-      <h4>Temporary placeholder recipe</h4>
+      <h2>Temporary placeholder recipe</h2>
       <hr class="solid">
       <li><b>Cuisine:</b> American</li>
-      <li>Time: 1h 30min</li>
+      <li><b>Time:</b> 1h 30min</li>
       <hr class="solid">
-      <p>Ingredients</p>
+      <p><b>Ingredients</b></p>
       <li>chicken</li>
       <li>salt</li>
       <li>seasoning</li>
@@ -63,9 +61,6 @@
   </section>
 </body>
 
-<link
-  rel="stylesheet"
-  href="index.js"
->
+<script src="./index.js"></script>
 
 </html>
