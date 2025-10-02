@@ -38,6 +38,7 @@ h2 {
   letter-spacing: 0;
   color: rgb(0, 24, 164);
   padding: 8px 16px;
+  margin: 3px;
 }
 
 .filter .btn-filter {
@@ -67,9 +68,10 @@ h2 {
   outline: 2px solid rgb(0, 24, 164);
 }
 
-.card-container {
+.container {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 20px;
   gap: 10px;
 }
@@ -83,6 +85,12 @@ h2 {
   list-style-type: none;
   width: 300px;
   height: auto;
+  margin: 15px 0;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
 }
 
 .card:hover {
@@ -96,11 +104,12 @@ h2 {
 }
 
 /* tablet */
-@media (min-width: 668px) and (max-width: 1430px) {
+@media (min-width: 700px) and (max-width: 1430px) {
 
-  .card-container {
+  .container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 16px;
   }
 
@@ -115,9 +124,10 @@ h2 {
 /* desktop */
 @media (min-width: 1431px) {
 
-  .card-container {
+  .container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
   }
 

@@ -22,45 +22,53 @@
     <div class="filter">
       <h2>Filter on kitchen
       </h2>
-      <button class="btn-filter active">All</button>
-      <button class="btn-filter">Italy</button>
-      <button class="btn-filter">USA</button>
-      <button class="btn-filter">China</button>
+      <button
+        value="All"
+        class="btn-filter active"
+      >All</button>
+      <button
+        value="Italian"
+        class="btn-filter"
+      >Italy</button>
+      <button
+        value="Middle Eastern"
+        class="btn-filter"
+      >Middle Easter</button>
+      <button
+        value="Asian"
+        class="btn-filter"
+      >Asian</button>
+      <button
+        value="Mediterranean"
+        class="btn-filter"
+      >Mediterranean</button>
+      <button
+        value="Mexican"
+        class="btn-filter"
+      >Mexican</button>
     </div>
 
     <div class="sort">
       <h2>Sort on time</h2>
-      <button class="btn-sort active">Descending</button>
-      <button class="btn-sort">Ascending</button>
+      <button
+        value="Descending"
+        class="btn-sort active"
+      >Descending</button>
+      <button
+        value="Ascending"
+        class="btn-sort"
+      >Ascending</button>
     </div>
   </div>
 
-  <section class="card-container">
-    <article class="card">
-      <h2>Temporary placeholder for filter/sorting options</h2>
-      <p id="result-filter"></p>
-      <p id="result-sort"></p>
-    </article>
-    <article class="card">
-      <img
-        class="example"
-        src="example.jpg"
-        alt="example"
-      >
-      <h2>Temporary placeholder recipe</h2>
-      <hr class="solid">
-      <li><b>Cuisine:</b> American</li>
-      <li><b>Time:</b> 1h 30min</li>
-      <hr class="solid">
-      <p><b>Ingredients</b></p>
-      <li>chicken</li>
-      <li>salt</li>
-      <li>seasoning</li>
-      <li>pepper</li>
-    </article>
-  </section>
+  <section
+    class="container"
+    id="container"
+  ></section>
+
+  <script src="./recipes.js"></script>
+
 </body>
 
-<script src="./index.js"></script>
 
 </html>
