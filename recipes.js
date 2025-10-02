@@ -1,11 +1,15 @@
 // Pickups
-
 const buttonsFilter = document.querySelectorAll(".btn-filter")
 const buttonsSort = document.querySelectorAll(".btn-sort")
 const resultFilter = document.getElementById("result-filter")
 const resultSort = document.getElementById("result-sort")
+const container = document.getElementById('container')
+const button = document.getElementById('button')
+const randomButtons = document.querySelector(".btn-random")
 
-
+let currentFilter = []
+let currentSort = ""
+let buttonText = ""
 
 // Recipes
 const recipes = [
@@ -170,12 +174,11 @@ const recipes = [
   }
 ]
 
-const container = document.getElementById('container')
 
-const showRecipes = (recipes) => {
+// Recipe box
+const showRecipes = (recipesArray) => {
   container.innerHTML = ''
-
-  recipes.forEach(recipe => {
+  recipesArray.forEach(recipe => {
     container.innerHTML += `
     <div class="card">
     <img src="example.jpg"/>
@@ -185,46 +188,79 @@ const showRecipes = (recipes) => {
     <li><b>Time: </b>${recipe.readyInMinutes}</li>
     <hr class="solid">
     <p><b>Ingredients</b></p>
-    <li>${recipe.ingredients}</li>
+    <li>${recipe.ingredients.join("<br>")}</li>
     </div> `
   })
 }
-
 showRecipes(recipes)
 
+
 // Filter
+const updateRecipes = () => {
+  let filteredRecipes = recipes
+  if (currentFilter.length > 0) {
+    filteredRecipes = filteredRecipes.filter(recipe =>
+      currentFilter.includes(recipe.cuisine.toLowerCase())
+    )
+    console.log("Filtered recipes:", filteredRecipes)
+  }
+  filteredRecipes = sortRecipes(filteredRecipes)
+  showRecipes(filteredRecipes)
+}
+
+
+// Sort
+const sortRecipes = (recipesArray) => {
+  if (currentSort === "Ascending") {
+    return recipesArray.sort((a, b) => a.readyInMinutes - b.readyInMinutes)
+  }
+  if (currentSort === "Descending") {
+    return recipesArray.sort((a, b) => b.readyInMinutes - a.readyInMinutes)
+  }
+  return recipesArray
+}
+
+
+// Eventlistener Filter
 buttonsFilter.forEach(button => {
-  button.addEventListener("click", (event) => {
-    button.classList.toggle("active")
-    buttonsFilter.forEach(b => b.classList.remove('active'))
-    button.classList.add('active')
-    const selectedCuisine = event.target.value
-    let filteredRecipes
-    if (selectedCuisine === "All") {
-      filteredRecipes = recipes
+  button.addEventListener("click", () => {
+    const filterText = button.innerText.toLowerCase()
+    if (filterText === "all") {
+      currentFilter = [] // inga filter
     } else {
-      filteredRecipes = recipes.filter(recipe => recipe.cuisine === selectedCuisine
-      )
-    } showRecipes(filteredRecipes)
+      currentFilter = [filterText]
+    }
+    buttonsFilter.forEach(btn => btn.classList.remove("active"))
+    button.classList.add("active")
+    updateRecipes()
   })
 })
 
 
-
-//Sort
-buttonsSort.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    button.classList.toggle("active")
-    buttonsSort.forEach(b => b.classList.remove('active'))
-    button.classList.add('active')
-    const selectedSort = event.target.value
-    let sortedRecipes
-    if (selectedSort === "Ascending") {
-      sortedRecipes = recipes.sort((a, b) => a.readyInMinutes - b.readyInMinutes)
-    } else {
-      selectedSort === "Descending"
-      sortedRecipes = recipes.sort((a, b) => b.readyInMinutes - a.readyInMinutes)
-
-    } showRecipes(sortedRecipes)
+// Eventlistener Sort
+buttonsSort.forEach(button => {
+  button.addEventListener("click", () => {
+    currentSort = button.innerText
+    buttonsSort.forEach(btn => btn.classList.remove("active"))
+    button.classList.add("active")
+    updateRecipes()
   })
 })
+
+
+// Empty Message
+const showEmptyMessage = () => {
+  if (currentFilter === "Swedish")
+    container.innerHTML = `
+    <div class="empty-message">
+      <p>No recipes match the selected filters.</p>
+    </div>`
+}
+
+// Random Button
+randomButtons.addEventListener("click", () => {
+  randomButtons.classList.toggle("selected")
+  const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)]
+  showRecipes([randomRecipe])
+})
+showRecipes(recipes)
