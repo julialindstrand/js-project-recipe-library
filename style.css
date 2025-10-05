@@ -61,13 +61,21 @@ h2 {
   color: white;
 }
 
-.btn-filter:hover {
+.btn-filter:hover,
+.btn-random:hover {
   outline: 2px solid rgb(0, 24, 164);
 }
 
 .btn-sort:hover {
   background-color: #FF6589;
   outline: 2px solid rgb(0, 24, 164);
+}
+
+.btn-random {
+  background-image: linear-gradient(to right, rgb(204, 255, 226), rgb(255, 236, 234));
+  color: rgb(0, 24, 164);
+  /* background-image: linear-gradient(to right, rgb(0, 24, 164), rgb(255, 101, 137));
+  color: white; */
 }
 
 .container {
@@ -77,6 +85,7 @@ h2 {
   margin-top: 20px;
   gap: 10px;
 }
+
 
 .card {
   border: 1px solid rgb(204, 204, 204);

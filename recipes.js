@@ -178,6 +178,11 @@ const recipes = [
 // Recipe box
 const showRecipes = (recipesArray) => {
   container.innerHTML = ''
+
+  if (recipesArray.length === 0) {
+    container.innerHTML = `<p>The filter you chose doesn't match a recipe.</p>`
+  }
+
   recipesArray.forEach(recipe => {
     container.innerHTML += `
     <div class="card">
@@ -202,7 +207,7 @@ const updateRecipes = () => {
     filteredRecipes = filteredRecipes.filter(recipe =>
       currentFilter.includes(recipe.cuisine.toLowerCase())
     )
-    console.log("Filtered recipes:", filteredRecipes)
+    // console.log("Filtered recipes:", filteredRecipes)
   }
   filteredRecipes = sortRecipes(filteredRecipes)
   showRecipes(filteredRecipes)
@@ -221,12 +226,22 @@ const sortRecipes = (recipesArray) => {
 }
 
 
+// // Empty Message
+// const showMessage = () => {
+//   if (!recipes || recipes.length === 0) {
+//     console.log('Empty result set')
+//     container.innerHTML = `<p>${"The filter you chose doesn't match a recipe"}</p>`
+//   }
+// }
+// showMessage()
+
+
 // Eventlistener Filter
 buttonsFilter.forEach(button => {
   button.addEventListener("click", () => {
     const filterText = button.innerText.toLowerCase()
     if (filterText === "all") {
-      currentFilter = [] // inga filter
+      currentFilter = []
     } else {
       currentFilter = [filterText]
     }
@@ -248,15 +263,6 @@ buttonsSort.forEach(button => {
 })
 
 
-// Empty Message
-const showEmptyMessage = () => {
-  if (currentFilter === "Swedish")
-    container.innerHTML = `
-    <div class="empty-message">
-      <p>No recipes match the selected filters.</p>
-    </div>`
-}
-
 // Random Button
 randomButtons.addEventListener("click", () => {
   randomButtons.classList.toggle("selected")
@@ -264,3 +270,4 @@ randomButtons.addEventListener("click", () => {
   showRecipes([randomRecipe])
 })
 showRecipes(recipes)
+
