@@ -74,8 +74,6 @@ h2 {
 .btn-random {
   background-image: linear-gradient(to right, rgb(204, 255, 226), rgb(255, 236, 234));
   color: rgb(0, 24, 164);
-  /* background-image: linear-gradient(to right, rgb(0, 24, 164), rgb(255, 101, 137));
-  color: white; */
 }
 
 .container {

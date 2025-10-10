@@ -12,6 +12,7 @@ const container = document.getElementById('container')
 
 // API
 const API_KEY = "a226b7d82dd04ae1a8a13201ec0d461a"
+const API_KEY2 = "37839bb1eaae459a8ce3b8aed9115737"
 const URL = `https://api.spoonacular.com/recipes/complexSearch?number=30&apiKey=${API_KEY}&addRecipeInformation=true&cuisines=italian,asian,mediterranean,mexican,european&fillIngredients=true`
 
 
@@ -21,6 +22,7 @@ let currentFilter = []
 let currentSort = ""
 
 
+// Fetch API
 const fetchData = async () => {
   try {
     const res = await fetch(URL)
@@ -34,7 +36,7 @@ const fetchData = async () => {
       allRecipes = backUpData
     }
   } catch (e) {
-    console.error('Fetch failed – using backup data.', e)
+    console.error('Fetch failed, using backup data.', e)
     allRecipes = backUpData
   } finally {
     updateUI()
@@ -59,8 +61,9 @@ const showRecipes = (recipes) => {
     <li><b>Cuisine: </b>${recipe.cuisines}</li>
     <li><b>Time: </b>${recipe.readyInMinutes}</li>
     <hr class="solid">
-    <p><b>Ingredients</b></p>
-    <li>${recipe.extendedIngredients?.join("<br>")}</li>
+    <details>
+    <summary><b>Ingredients</b></summary>
+    <li><br>${recipe.extendedIngredients.map(ingredients => ingredients.name).join("<br>")}</li>
     </div>`
   })
 }
@@ -70,14 +73,14 @@ const showRecipes = (recipes) => {
 const updateUI = () => {
   let visible = [...allRecipes]
 
-  // filter
+  // ---filter---
   if (currentFilter.length > 0) {
     visible = visible.filter(r =>
       r.cuisines.some(c => currentFilter.includes(c.toLowerCase()))
     )
   }
 
-  // sort
+  // ---sort---
   if (currentSort === 'Ascending') {
     visible.sort((a, b) => a.readyInMinutes - b.readyInMinutes)
   } else if (currentSort === 'Descending') {
@@ -88,7 +91,8 @@ const updateUI = () => {
 }
 
 
-// Eventlistener Filter
+// Eventlisteners
+// ---Filter---
 buttonsFilter.forEach(button => {
   button.addEventListener("click", () => {
     const filterText = button.innerText.toLowerCase()
@@ -104,7 +108,7 @@ buttonsFilter.forEach(button => {
 })
 
 
-// Eventlistener Sort
+// ---Sort---
 buttonsSort.forEach(button => {
   button.addEventListener("click", () => {
     currentSort = button.innerText
