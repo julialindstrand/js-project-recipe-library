@@ -1,4 +1,4 @@
-// Import backUpData
+// import backUpData
 import { backUpData } from "./backUpData.js"
 console.log("backUpData loaded", backUpData)
 
@@ -32,6 +32,7 @@ const fetchData = async () => {
     allRecipes = json.results ?? []
 
     if (allRecipes.length === 0) {
+      container.innerHTML = `<p>The API has reached it's limit. Try again later!</p>`
       console.warn('API returned empty, using backup data.')
       allRecipes = backUpData
     }
